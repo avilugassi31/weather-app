@@ -1,0 +1,24 @@
+<section class="weather-app">
+    <h1>Check Weather</h1>
+    <form (submit)="onSaveLocation()">
+        <input type="text" name="name" id="name" [(ngModel)]="city" placeholder="Write location" required />
+        <input type="text" name="unit" id="unit" [(ngModel)]="unit" placeholder="Units(metric,standard)" required />
+        <button><img src="../../../assets/plus.png" alt="" /></button>
+    </form>
+    <div class="weather-div" *ngIf="weather" class="show-weather">
+        <ul>
+            <li>
+                <h1>City: {{weather.name}}</h1>
+                <h2>Temp: {{weather.main.temp}}</h2>
+                <h2>forecast: {{weather.weather[0].main}}</h2>
+            </li>
+        </ul>
+        <h1>weather in :</h1>
+        <ul class="weather-preview">
+            <weather-preview *ngFor="let location of locations;index as idx" [trackBy]="trackByFn"
+                [location]="location">
+            </weather-preview>
+        </ul>
+    </div>
+
+</section>
